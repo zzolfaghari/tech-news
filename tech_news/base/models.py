@@ -12,4 +12,4 @@ class Article(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    status = models.CharField(choices=StatusType)
+    status = models.CharField(max_length=9, choices=StatusType.choices)
