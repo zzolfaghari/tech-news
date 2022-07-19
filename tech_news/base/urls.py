@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import home
+
+from .controller.articles.articles_controller import ArticleController
 
 
 urlpatterns = [
-    path('', home, name='home')
+    path('', ArticleController.as_view(), name='home')
 
 ]
