@@ -8,3 +8,6 @@ class ArticleDao:
     def get_all_articles(self):
         articles = Article.objects.all()
         return articles
+
+    def get_articles_by_slug(self, slug):
+        return Article.objects.get(slug=slug)

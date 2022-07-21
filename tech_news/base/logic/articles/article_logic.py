@@ -8,3 +8,6 @@ class ArticleLogic:
 
     def get_all_articles(self):
         return self.article_dao.get_all_articles()
+
+    def get_article_by_slug(self, slug):
+        return self.article_dao.get_articles_by_slug(slug)

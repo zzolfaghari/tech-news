@@ -10,4 +10,14 @@ class ArticleController(View):
 
     def get(self, request):
         articles = self.article_logic.get_all_articles()
-        return render(request, template_name='base/home.html', context=articles)
+        return render(request, template_name='base/index.html', context={'articles': articles})
+
+
+class ArticleDetailView(View):
+    def __init__(self):
+        super().__init__()
+        self.article_logic = ArticleLogic()
+
+    def get(self, request, slug):
+        articles = self.article_logic.get_article_by_slug(slug)
+        return render(request, template_name='base/post.html', context={'articles': articles})
