@@ -19,5 +19,5 @@ class ArticleDetailView(View):
         self.article_logic = ArticleLogic()
 
     def get(self, request, slug):
-        articles = self.article_logic.get_article_by_slug(slug)
-        return render(request, template_name='base/post.html', context={'articles': articles})
+        article = self.article_logic.get_article_by_slug(slug)
+        return render(request, template_name='base/post.html', context={'article': article})

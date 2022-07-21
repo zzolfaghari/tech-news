@@ -1,3 +1,6 @@
+from django.shortcuts import get_object_or_404
+
+from base.enums import StatusType
 from base.models import Article
 
 
@@ -10,4 +13,4 @@ class ArticleDao:
         return articles
 
     def get_articles_by_slug(self, slug):
-        return Article.objects.get(slug=slug)
+        return get_object_or_404(Article, slug=slug, status=StatusType.PUBLISHED)
