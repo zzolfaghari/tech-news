@@ -14,3 +14,7 @@ class Article(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=9, choices=StatusType.choices)
+
+    class Meta:
+        verbose_name = "مقاله"
+        verbose_name_plural = "مقالات"
