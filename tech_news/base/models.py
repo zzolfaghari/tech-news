@@ -3,7 +3,8 @@ from django.db import models
 from django.utils import timezone
 
 from base.enums import StatusType
-from shared.utils import jalali_converter
+# from shared.utils import jalali_converter
+from shared.utils import TechNewsUtils
 
 
 class Article(models.Model):
@@ -21,5 +22,6 @@ class Article(models.Model):
         verbose_name_plural = "مقالات"
 
     def jpublish(self):
-        return jalali_converter(self.publish)
-    jpublish.short_description ="زمان انتشار"
+        return TechNewsUtils().jalali_converter(self.publish)
+
+    jpublish.short_description = "زمان انتشار"

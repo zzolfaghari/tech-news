@@ -9,6 +9,7 @@ class Gregorian:
         if len(date) == 1:
             date = date[0]
             if type(date) is str:
+                date = date.replace(" ", "")
                 m = re.match(r'^(\d{4})\D(\d{1,2})\D(\d{1,2})$', date)
                 if m:
                     [year, month, day] = [int(m.group(1)), int(m.group(2)), int(m.group(3))]
