@@ -1,7 +1,16 @@
 from django.contrib import admin
 
-from base.models import Article
+from base.models import Article, Category
 
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('position','title', 'slug', 'status')
+    list_filter = ('status',)
+    search_fields = ('title', 'slug')
+    prepopulated_fields = dict(slug=('title',))
+
+
+admin.site.register(Category, CategoryAdmin)
 
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'jpublish', 'status')
