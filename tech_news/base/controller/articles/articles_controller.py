@@ -1,16 +1,22 @@
 from django.shortcuts import render
 from django.views import View
+
+from base.dal.dao.category.category_dao import CategoryDao
 from base.logic.articles.article_logic import ArticleLogic
+from base.logic.category.category_logic import CategoryLogic
 
 
 class ArticleController(View):
     def __init__(self):
         super().__init__()
         self.article_logic = ArticleLogic()
+        self.category_logic = CategoryLogic()
 
     def get(self, request):
-        articles = self.article_logic.get_all_articles()
-        return render(request, template_name='base/index.html', context={'articles': articles})
+        context = {
+            'articles': self.article_logic.get_all_articles(),
+            'category': self.category_logic.get_category_by_status(status=True)}
+        return render(request, template_name='base/index.html', context=context)
 
 
 class ArticleDetailView(View):
