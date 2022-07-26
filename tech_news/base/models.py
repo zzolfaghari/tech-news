@@ -42,3 +42,6 @@ class Article(models.Model):
         return TechNewsUtils().jalali_converter(self.publish)
 
     jpublish.short_description = "زمان انتشار"
+
+    def category_published(self):
+        return self.category.filter(status=True)

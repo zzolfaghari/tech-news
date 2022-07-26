@@ -33,7 +33,9 @@
                             <a href="#!">Start Bootstrap</a>
                             {{article.jpublish}}
                             <div>
-
+                        {%for cat in article.category_published.all%}
+                        <a href="#">#{{cat.title}}</a>
+                        {%endfor%}
                     </div>
 
                         </p>
