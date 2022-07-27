@@ -46,7 +46,12 @@
 
                     <!-- Pager-->
                     <div class="d-flex justify-content-end mb-4 pager-button">
-                        <a class="btn btn-primary text-uppercase" href="#!"> پست‌های قدیمی&larr;</a>
+                        {% if articles.has_previous %}
+                        <a class="btn btn-primary text-uppercase ml-3 " href="{% url 'base:home' articles.previous_page_number%}"> &rarr;پست‌های جدیدتر  </a>
+                        {% endif %}
+                        {% if articles.has_next %}
+                        <a class="btn btn-primary text-uppercase" href="{% url 'base:home' articles.next_page_number%}"> پست‌های قدیمی&larr;</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

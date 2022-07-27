@@ -10,10 +10,9 @@ class ArticleController(View):
         super().__init__()
         self.article_logic = ArticleLogic()
 
-    def get(self, request):
+    def get(self, request, page=1):
         article = self.article_logic.get_all_articles()
         paginator = Paginator(article, 1)
-        page = request.GET.get('page')
         paginated_articles = paginator.get_page(page)
         context = {
             'articles': paginated_articles}
