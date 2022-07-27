@@ -25,3 +25,12 @@ text-align: left;
 .pager-button{
 float: left !important;
 }
+
+header.masthead .site-heading h1{
+font-size: 40px;}
+
+.post-title {
+font-size:28px !important;}
+
+.post-subtitle {
+font-size:16px ;}
