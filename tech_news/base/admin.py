@@ -23,7 +23,7 @@ class ArticleAdmin(admin.ModelAdmin):
     ordering = ['status', 'publish']
 
     def show_category(self, obj):
-        return "، ".join([category.title for category in obj.category.all()])
+        return "، ".join([category.title for category in obj.category_published()])
 
     show_category.short_description = "دسته‌بندی"
 
