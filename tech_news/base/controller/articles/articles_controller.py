@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.views import View
 
@@ -10,8 +11,12 @@ class ArticleController(View):
         self.article_logic = ArticleLogic()
 
     def get(self, request):
+        article = self.article_logic.get_all_articles()
+        paginator = Paginator(article, 1)
+        page = request.GET.get('page')
+        paginated_articles = paginator.get_page(page)
         context = {
-            'articles': self.article_logic.get_all_articles()}
+            'articles': paginated_articles}
         return render(request, template_name='base/index.html', context=context)
 
 
