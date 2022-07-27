@@ -13,4 +13,4 @@ class ArticleDao:
         return articles
 
     def get_articles_by_slug(self, slug):
-        return get_object_or_404(Article, slug=slug, status=StatusType.PUBLISHED)
+        return get_object_or_404(Article.objects.published(), slug=slug)

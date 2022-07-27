@@ -3,9 +3,12 @@ from django.db import models
 from django.utils import timezone
 
 from base.enums import StatusType
-# from shared.utils import jalali_converter
 from shared.utils import TechNewsUtils
 
+
+class ArticleManager(models.Manager):
+    def published(self):
+        return self.filter(status=StatusType.PUBLISHED)
 
 
 class Category(models.Model):
@@ -45,3 +48,5 @@ class Article(models.Model):
 
     def category_published(self):
         return self.category.filter(status=True)
+
+    objects = ArticleManager()
