@@ -4,12 +4,10 @@ from base.models import Article, Category
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('position', 'title', 'slug', 'status')
+    list_display = ('position', 'title', 'slug', 'parent', 'status')
     list_filter = ('status',)
     search_fields = ('title', 'slug')
     prepopulated_fields = dict(slug=('title',))
-
-
 
 
 admin.site.register(Category, CategoryAdmin)
