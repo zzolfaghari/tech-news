@@ -1,0 +1,12 @@
+<ul class="navbar-nav ms-auto py-4 py-lg-0">
+    {% for cat in cat.children.all %}
+        <li class="nav-item">
+             <li class="nav-item">
+                 <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'base:category' cat.slug%}">{{cat.title}}</a>
+            {%if cat.children.all  %}
+            {% include 'base/partials/category_children.html'%}
+            {% endif %}
+             </li>
+    {% endfor %}
+
+</ul>
