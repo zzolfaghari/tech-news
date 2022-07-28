@@ -21,7 +21,7 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <h3 class="alert alert-primary">{{category.title}}</h3>
-                    {% for article in category.articles.published %}
+                    {% for article in articles %}
                     <!-- Post preview-->
                     <div class="post-preview">
                         <a href="{%  url 'base:detail' article.slug  %}">
@@ -47,7 +47,12 @@
 
                     <!-- Pager-->
                     <div class="d-flex justify-content-end mb-4 pager-button">
-                        <a class="btn btn-primary text-uppercase" href="#!"> پست‌های قدیمی&larr;</a>
+                        {% if articles.has_previous %}
+                        <a class="btn btn-primary text-uppercase ml-3 " href="{% url 'base:category' category.slug articles.previous_page_number%}"> &rarr;پست‌های جدیدتر  </a>
+                        {% endif %}
+                        {% if articles.has_next %}
+                        <a class="btn btn-primary text-uppercase" href="{% url 'base:category' category.slug articles.next_page_number%}"> پست‌های قدیمی&larr;</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
