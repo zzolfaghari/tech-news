@@ -12,7 +12,7 @@ class ArticleController(View):
 
     def get(self, request, page=1):
         article = self.article_logic.get_all_articles()
-        paginator = Paginator(article, 1)
+        paginator = Paginator(article, 6)
         paginated_articles = paginator.get_page(page)
         context = {
             'articles': paginated_articles}
