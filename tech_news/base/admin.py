@@ -1,6 +1,14 @@
 from django.contrib import admin
 
+from base.enums import StatusType
 from base.models import Article, Category
+
+
+def make_published(modeladmin, request, queryset):
+    queryset.update(status=StatusType.PUBLISHED)
+
+
+make_published.short_description = "انتشار مقالات انتخاب شده"
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -19,6 +27,7 @@ class ArticleAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description')
     prepopulated_fields = dict(slug=('title',))
     ordering = ['status', 'publish']
+    actions = [make_published]
 
     def show_category(self, obj):
         return "، ".join([category.title for category in obj.category_published()])
