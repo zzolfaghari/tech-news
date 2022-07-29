@@ -11,6 +11,13 @@ def make_published(modeladmin, request, queryset):
 make_published.short_description = "انتشار مقالات انتخاب شده"
 
 
+def make_draft(modeladmin, request, queryset):
+    queryset.update(status=StatusType.DRAFT)
+
+
+make_draft.short_description = "پیش نویس مقالات انتخاب شده"
+
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('position', 'title', 'slug', 'parent', 'status')
     list_filter = ('status',)
@@ -27,7 +34,7 @@ class ArticleAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description')
     prepopulated_fields = dict(slug=('title',))
     ordering = ['status', 'publish']
-    actions = [make_published]
+    actions = [make_published, make_draft]
 
     def show_category(self, obj):
         return "، ".join([category.title for category in obj.category_published()])
