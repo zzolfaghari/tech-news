@@ -47,11 +47,11 @@
 
                     <!-- Pager-->
                     <div class="d-flex justify-content-end mb-4 pager-button">
-                        {% if articles.has_previous %}
-                        <a class="btn btn-primary text-uppercase ml-3 " href="{% url 'base:category' category.slug articles.previous_page_number%}"> &rarr;پست‌های جدیدتر  </a>
+                        {% if page_obj.has_previous %}
+                        <a class="btn btn-primary text-uppercase ml-3 " href="{% url 'base:category' category.slug page_obj.previous_page_number%}"> &rarr;پست‌های جدیدتر  </a>
                         {% endif %}
-                        {% if articles.has_next %}
-                        <a class="btn btn-primary text-uppercase" href="{% url 'base:category' category.slug articles.next_page_number%}"> پست‌های قدیمی&larr;</a>
+                        {% if page_obj.has_next %}
+                        <a class="btn btn-primary text-uppercase" href="{% url 'base:category' category.slug page_obj.next_page_number%}"> پست‌های قدیمی&larr;</a>
                         {% endif %}
                     </div>
                 </div>
