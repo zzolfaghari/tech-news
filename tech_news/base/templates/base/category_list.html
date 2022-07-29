@@ -21,7 +21,7 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <h3 class="alert alert-primary">{{category.title}}</h3>
-                    {% for article in articles %}
+                    {% for article in article_list %}
                     <!-- Post preview-->
                     <div class="post-preview">
                         <a href="{%  url 'base:detail' article.slug  %}">
@@ -51,7 +51,7 @@
                         <a class="btn btn-primary text-uppercase ml-3 " href="{% url 'base:category' category.slug page_obj.previous_page_number%}"> &rarr;پست‌های جدیدتر  </a>
                         {% endif %}
                         {% if page_obj.has_next %}
-                        <a class="btn btn-primary text-uppercase" href="{% url 'base:category' category.slug page_obj.next_page_number%}"> پست‌های قدیمی&larr;</a>
+                        <a class="btn btn-primary text-uppercase ml-3" href="{% url 'base:category' category.slug page_obj.next_page_number%}"> پست‌های قدیمی&larr;</a>
                         {% endif %}
                     </div>
                 </div>
