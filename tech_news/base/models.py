@@ -1,6 +1,7 @@
 from django.db import models
 
 from django.utils import timezone
+from django.utils.html import format_html
 
 from base.enums import StatusType
 from shared.utils import TechNewsUtils
@@ -49,5 +50,8 @@ class Article(models.Model):
 
     def category_published(self):
         return self.category.filter(status=True)
+
+    def thumbnail_tag(self):
+        return format_html("<img width='100' height='75' src='{}' >".format(self.thumbnail))
 
     objects = ArticleManager()
