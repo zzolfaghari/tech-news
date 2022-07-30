@@ -5,14 +5,24 @@ from base.models import Article, Category
 
 
 def make_published(modeladmin, request, queryset):
-    queryset.update(status=StatusType.PUBLISHED)
+    rows_updated = queryset.update(status=StatusType.PUBLISHED)
+    if rows_updated == 1:
+        message_bit = "منتشر شد"
+    else:
+        message_bit = "منتشر شدند"
+    modeladmin.message_user(request, f"{rows_updated} مقاله {message_bit}")
 
 
 make_published.short_description = "انتشار مقالات انتخاب شده"
 
 
 def make_draft(modeladmin, request, queryset):
-    queryset.update(status=StatusType.DRAFT)
+    rows_updated = queryset.update(status=StatusType.DRAFT)
+    if rows_updated == 1:
+        message_bit = "منتشر شد"
+    else:
+        message_bit = "منتشر شدند"
+    modeladmin.message_user(request, f"{rows_updated} مقاله {message_bit}")
 
 
 make_draft.short_description = "پیش نویس مقالات انتخاب شده"
