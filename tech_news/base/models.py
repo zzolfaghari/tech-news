@@ -52,6 +52,6 @@ class Article(models.Model):
         return self.category.filter(status=True)
 
     def thumbnail_tag(self):
-        return format_html("<img width='100' height='75' src='{}' >".format(self.thumbnail))
+        return format_html("<img width='100' height='75' src='{}' >".format(self.thumbnail.url))
 
     objects = ArticleManager()
