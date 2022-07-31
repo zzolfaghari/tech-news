@@ -3,6 +3,8 @@ from django.contrib import admin
 from base.enums import StatusType
 from base.models import Article, Category
 
+admin.site.site_header = "پنل ادمین"
+
 
 def make_published(modeladmin, request, queryset):
     rows_updated = queryset.update(status=StatusType.PUBLISHED)
