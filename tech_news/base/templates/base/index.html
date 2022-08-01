@@ -29,8 +29,8 @@
                             <h3 class="post-subtitle">{{article.description | truncatewords:20}}</h3>
                         </a>
                         <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
+                            نوشته شده توسط
+                            <a href="{%  url 'base:author' article.author  %}">{{article.author.get_full_name}}</a>
                             {{article.jpublish}}
                             <div>
                         {%for cat in article.category_published.all%}
