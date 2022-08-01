@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 from django.utils import timezone
@@ -29,6 +30,7 @@ class Category(models.Model):
 
 
 class Article(models.Model):
+    author = models.ForeignKey(User, null=True, on_delete=models.CASCADE, verbose_name="نویسنده", related_name='articles')
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.TextField()
