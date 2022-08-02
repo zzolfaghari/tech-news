@@ -1,61 +1,13 @@
-{%extends 'base/base.html' %}
+{%extends 'base/index.html' %}
 
-{% load static %}
-{% block main%}
+{% block header%}
+<h3 class="alert alert-primary text-center "> دسته‌بندی {{category.title}}</h3>
+{%endblock%}
 
- <!-- Page Header-->
-        <header class="masthead" style="background-image: url({% static 'base/assets/img/home-bg.jpg'%})">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="site-heading">
-                            <h1>Tech News</h1>
-                            <span class="subheading">A Blog Theme by Start Bootstrap</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-<!-- Main Content-->
-        <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    <h3 class="alert alert-primary">{{category.title}}</h3>
-                    {% for article in article_list %}
-                    <!-- Post preview-->
-                    <div class="post-preview">
-                        <a href="{%  url 'base:detail' article.slug  %}">
+{% block previous_page_url %}
+{% url 'base:category' category.slug page_obj.previous_page_number%}
+{% endblock %}
 
-                            <h2 class="post-title">{{article.title}}</h2>
-                            <h3 class="post-subtitle">{{article.description | truncatewords:20}}</h3>
-                        </a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
-                            {{article.jpublish}}
-                            <div>
-                        {%for cat in article.category_published.all%}
-                        <a href="#">#{{cat.title}}</a>
-                        {%endfor%}
-                    </div>
-
-                        </p>
-                    </div>
-                    <!-- Divider-->
-                    <hr class="my-4" />
-                    {% endfor %}
-
-                    <!-- Pager-->
-                    <div class="d-flex justify-content-end mb-4 pager-button">
-                        {% if page_obj.has_previous %}
-                        <a class="btn btn-primary text-uppercase ml-3 " href="{% url 'base:category' category.slug page_obj.previous_page_number%}"> &rarr;پست‌های جدیدتر  </a>
-                        {% endif %}
-                        {% if page_obj.has_next %}
-                        <a class="btn btn-primary text-uppercase ml-3" href="{% url 'base:category' category.slug page_obj.next_page_number%}"> پست‌های قدیمی&larr;</a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-
+{% block next_page_url %}
+{% url 'base:category' category.slug page_obj.next_page_number%}
 {% endblock %}
