@@ -2,15 +2,14 @@
 
 {% load static %}
 {% block main%}
-
- <!-- Page Header-->
+<!-- Page Header-->
         <header class="masthead" style="background-image: url({% static 'base/assets/img/home-bg.jpg'%})">
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
                             <h1>Tech News</h1>
-                            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                            <span class="subheading">وبلاگی برای خبرهای تکنولوژی</span>
                         </div>
                     </div>
                 </div>
@@ -20,7 +19,6 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
-                    <h3 class="alert alert-primary">{{category.title}}</h3>
                     {% block header %} {% endblock %}
                     {% for article in article_list %}
                     <!-- Post preview-->
@@ -30,33 +28,33 @@
                             <h2 class="post-title">{{article.title}}</h2>
                             <h3 class="post-subtitle">{{article.description | truncatewords:20}}</h3>
                         </a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
+                        <p class="post-meta">-->
+                            نوشته شده توسط
+                            <a href="#!">Me</a>
                             {{article.jpublish}}
                             <div>
                         {%for cat in article.category_published.all%}
-                        <a href="#">#{{cat.title}}</a>
+                        <a href="{% url 'base:category' cat.slug %}">#{{cat.title}}</a>
                         {%endfor%}
                     </div>
+                       </p>
 
-                        </p>
                     </div>
                     <!-- Divider-->
                     <hr class="my-4" />
                     {% endfor %}
-
-                    <!-- Pager-->
                     <div class="d-flex justify-content-end mb-4 pager-button">
-                        {% if page_obj.has_previous %}
-                        <a class="btn btn-primary text-uppercase ml-3 " href="{% block previous_page_url %} {% endblock %}"> &rarr;پست‌های جدیدتر  </a>
+                        {% if article_list.has_previous %}
+                            <a class="btn btn-primary float-right ml-3" href="{% block previous_page_url %}{% endblock %}">پست های قدیمی &rarr;</a>
                         {% endif %}
-                        {% if page_obj.has_next %}
-                        <a class="btn btn-primary text-uppercase ml-3" href="{% block next_page_url %} {% endblock %}"> پست‌های قدیمی&larr;</a>
+                        {% if article_list.has_next %}
+                            <a class="btn btn-primary float-right" href="{% block next_page_url %}{% endblock %}">پست های جدید &larr;</a>
                         {% endif %}
+
                     </div>
                 </div>
             </div>
         </div>
-
 {% endblock %}
+
+
