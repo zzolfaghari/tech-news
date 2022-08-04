@@ -12,14 +12,14 @@ class AuthorController(ListView):
         self.author_logic = AuthorLogic()
 
     def get_queryset(self):
-        global category
-        username = self.kwargs.get('slug')
-        authors = self.author_logic.get_author_by_username(username=username)
-        return authors.articles.published()
+        global author
+        username = self.kwargs.get('username')
+        author = self.author_logic.get_author_by_username(username=username)
+        return author.articles.published()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['category'] = category
+        context['author'] = author
         return context
 
 
