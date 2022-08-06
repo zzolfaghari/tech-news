@@ -1,11 +1,11 @@
 from django.contrib.auth import views
 from django.urls import path
 
-from account.views import home
+from account.controller.article_controller import ArticleList
 
 app_name = 'account'
 urlpatterns = [
-    path("", home, name="home"),
+    path("", ArticleList.as_view(), name="home"),
     path("login/", views.LoginView.as_view(), name="login"),
 
     # path("logout/", views.LogoutView.as_view(), name="logout"),
