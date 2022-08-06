@@ -48,10 +48,5 @@ class ArticleAdmin(admin.ModelAdmin):
     ordering = ['status', 'publish']
     actions = [make_published, make_draft]
 
-    def show_category(self, obj):
-        return "، ".join([category.title for category in obj.category_published()])
-
-    show_category.short_description = "دسته‌بندی"
-
 
 admin.site.register(Article, ArticleAdmin)

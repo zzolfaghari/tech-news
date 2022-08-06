@@ -56,4 +56,9 @@ class Article(models.Model):
     def thumbnail_tag(self):
         return format_html("<img width='100' height='75' src='{}' >".format(self.thumbnail.url))
 
+    def show_category(self):
+        return "، ".join([category.title for category in self.category_published()])
+
+    show_category.short_description = "دسته‌بندی"
+
     objects = ArticleManager()
