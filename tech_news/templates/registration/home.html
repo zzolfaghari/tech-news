@@ -3,5 +3,56 @@
 {% block title %}لیست مقالات{% endblock %}
 
 {% block main%}
-خوش آمدید {{user.get_full_name}}
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>عنوان</th>
+                      <th>نوبسنده</th>
+                      <th>خلاصه</th>
+                      <th>دسته‌بندی</th>
+                      <th>تصویر</th>
+                      <th>تاریخ انتشار</th>
+                      <th>وضعیت انتشار</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for article in object_list %}
+                    <tr>
+                      <td>{{article.title}}</td>
+                      <td>{{article.slug}}</td>
+                      <td>{{article.author.get_full_name}}</td>
+                      <td>{{article.description|truncatewords:"30"}}</td>
+                      <td>{{article.show_category}}</td>
+                      <td><img src="{{article.thumbnail.url}}" width="120"></td>
+                      <td>{{article.jpublish}}</td>
+                      <td>
+                        {% if article.status == "PUBLISHED" %}
+                        <span class="badge badge-success">منتشر شده</span>
+                        <a target="_blank" class="badge badge-primary" href="{% url 'base:detail' article.slug%}">
+                          نمایش مقاله در سایت
+                        </a>
+                        {% else %}
+                        <span class="badge badge-danger">پیش نویس</span>
+
+                        {%endif%}
+
+                      </td>
+
+                    </tr>
+                  {% endfor %}
+
+
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
         {% endblock %}

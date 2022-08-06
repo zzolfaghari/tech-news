@@ -16,4 +16,7 @@ class ArticleDao:
     def get_all_articles(self):
         return Article.objects.all()
 
+    def get_article_by_author(self, author):
+        return Article.objects.filter(author=author)
+
 

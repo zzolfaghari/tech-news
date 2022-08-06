@@ -14,3 +14,6 @@ class ArticleLogic:
 
     def get_all_articles(self):
         return self.article_dao.get_all_articles()
+
+    def get_article_by_author(self, author):
+        return self.article_dao.get_article_by_author(author)
