@@ -1,3 +1,7 @@
 {% extends 'registration/base.html' %}
 
-{{user.get_full_name}}
+{% block title %}لیست مقالات{% endblock %}
+
+{% block main%}
+خوش آمدید {{user.get_full_name}}
+        {% endblock %}
