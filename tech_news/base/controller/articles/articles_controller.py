@@ -11,12 +11,12 @@ class ArticleController(View):
         self.article_logic = ArticleLogic()
 
     def get(self, request, page=1):
-        article = self.article_logic.get_all_articles()
-        paginator = Paginator(article, 6)
+        article = self.article_logic.get_all_published_articles()
+        paginator = Paginator(article, 2)
         paginated_articles = paginator.get_page(page)
         context = {
-            'articles': paginated_articles}
-        return render(request, template_name='base/index.html', context=context)
+            'article_list': paginated_articles}
+        return render(request, template_name='base/article_list.html', context=context)
 
 
 class ArticleDetailView(View):
