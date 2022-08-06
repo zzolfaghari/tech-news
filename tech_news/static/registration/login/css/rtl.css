@@ -13,3 +13,8 @@ font-family: Sahel !important;
 right: initial;
 left: 0;
 }
+.errors{
+background-color: #f2c0c0;
+color: red;
+padding: 20px 30px;
+}
