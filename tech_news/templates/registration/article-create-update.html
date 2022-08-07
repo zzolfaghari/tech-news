@@ -1,0 +1,11 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}ایجاد مقاله جدید{% endblock %}
+
+{% block main%}
+        <form method="post" enctype="multipart/form-data">{%csrf_token%}
+            {{form.as_p}}
+            <button class="btn btn-success">ارسال مقاله</button>
+
+        </form>
+        {% endblock %}
