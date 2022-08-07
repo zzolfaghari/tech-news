@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 
 from django.utils import timezone
 from django.utils.html import format_html
@@ -14,7 +15,8 @@ class ArticleManager(models.Manager):
 
 
 class Category(models.Model):
-    parent = models.ForeignKey('self', on_delete=models.SET_NULL, default=None, blank=True, null=True, verbose_name="زیر دسته")
+    parent = models.ForeignKey('self', on_delete=models.SET_NULL, default=None, blank=True, null=True,
+                               verbose_name="زیر دسته")
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=100, unique=True)
     status = models.BooleanField(default=True, verbose_name="آیا نمایش داده شود؟")
@@ -30,7 +32,8 @@ class Category(models.Model):
 
 
 class Article(models.Model):
-    author = models.ForeignKey(User, null=True, on_delete=models.CASCADE, verbose_name="نویسنده", related_name='articles')
+    author = models.ForeignKey(User, null=True, on_delete=models.CASCADE, verbose_name="نویسنده",
+                               related_name='articles')
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.TextField()
@@ -44,6 +47,9 @@ class Article(models.Model):
     class Meta:
         verbose_name = "مقاله"
         verbose_name_plural = "مقالات"
+
+    def get_absolute_url(self):
+        return reverse("account:home")
 
     def jpublish(self):
         return TechNewsUtils().jalali_converter(self.publish)

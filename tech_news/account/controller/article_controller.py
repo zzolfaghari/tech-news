@@ -1,7 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 
 from base.logic.articles.article_logic import ArticleLogic
+from base.models import Article
 
 
 class ArticleList(LoginRequiredMixin, ListView):
@@ -14,3 +15,15 @@ class ArticleList(LoginRequiredMixin, ListView):
         else:
             return ArticleLogic().get_article_by_author(author=self.request.user)
 
+
+class ArticleCreateView(CreateView):
+    model = Article
+    fields = ["author",
+              "title",
+              "slug",
+              "description",
+              "category",
+              "thumbnail",
+              "publish",
+              "status"]
+    template_name = "registration/article-create-update.html"
