@@ -26,7 +26,6 @@
                   {% for article in object_list %}
                     <tr>
                       <td>{{article.title}}</td>
-                      <td>{{article.slug}}</td>
                       <td>{{article.author.get_full_name}}</td>
                       <td>{{article.description|striptags|truncatewords:"30"}}</td>
                       <td>{{article.show_category}}</td>
