@@ -1,10 +1,10 @@
-from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
 from django.utils import timezone
 from django.utils.html import format_html
 
+from account.models import User
 from base.enums import StatusType
 from shared.utils import TechNewsUtils
 
