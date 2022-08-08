@@ -10,8 +10,7 @@ urlpatterns = [
     path("article/update/<int:pk>", ArticleUpdateView.as_view(), name="article-update"),
     path("article/delete/<int:pk>", ArticleDeleteView.as_view(), name="article-delete"),
     path("login/", views.LoginView.as_view(), name="login"),
-
-    # path("logout/", views.LogoutView.as_view(), name="logout"),
+    path("logout/", views.LogoutView.as_view(), name="logout"),
     # path(
     #     "password_change/", views.PasswordChangeView.as_view(), name="password_change"
     # ),
