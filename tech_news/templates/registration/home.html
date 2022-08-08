@@ -48,6 +48,10 @@
 
                         {%endif%}
 
+                        {% if user.is_superuser %}
+                        <a class="badge text-danger" href="{% url 'account:article-delete' article.pk%}">حذف مقاله</a>
+                        {% endif %}
+
                       </td>
 
                     </tr>

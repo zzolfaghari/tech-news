@@ -1,13 +1,14 @@
 from django.contrib.auth import views
 from django.urls import path
 
-from account.controller.article_controller import ArticleList, ArticleCreateView, ArticleUpdateView
+from account.controller.article_controller import ArticleList, ArticleCreateView, ArticleUpdateView, ArticleDeleteView
 
 app_name = 'account'
 urlpatterns = [
     path("", ArticleList.as_view(), name="home"),
     path("article/create/", ArticleCreateView.as_view(), name="article-create"),
     path("article/update/<int:pk>", ArticleUpdateView.as_view(), name="article-update"),
+    path("article/delete/<int:pk>", ArticleDeleteView.as_view(), name="article-delete"),
     path("login/", views.LoginView.as_view(), name="login"),
 
     # path("logout/", views.LogoutView.as_view(), name="logout"),

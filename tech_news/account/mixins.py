@@ -50,9 +50,18 @@ class AuthorAccessMixin:
     # to check that every author must access to their draft articles (not others articles) except superuser
     def dispatch(self, request, pk, *args, **kwargs):
         article = get_object_or_404(Article, pk=pk)
-        if article.author == request.user and article.status == StatusType.DRAFT\
+        if article.author == request.user and article.status == StatusType.DRAFT \
                 or request.user.is_superuser:
             return super().dispatch(request, pk, *args, **kwargs)
 
+        else:
+            raise Http404("you do not allowed to see this page")
+
+
+class SuperuserAccessMixin:
+    # just superusers can delete articles
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_superuser:
+            return super().dispatch(request, *args, **kwargs)
         else:
             raise Http404("you do not allowed to see this page")

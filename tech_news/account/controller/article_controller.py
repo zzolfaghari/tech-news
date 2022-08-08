@@ -1,7 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, CreateView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from account.mixins import FieldsMixin, FormValidMixin, AuthorAccessMixin
+from account.mixins import FieldsMixin, FormValidMixin, SuperuserAccessMixin, AuthorAccessMixin
 from base.logic.articles.article_logic import ArticleLogic
 from base.models import Article
 
@@ -25,3 +26,9 @@ class ArticleCreateView(LoginRequiredMixin, FormValidMixin, FieldsMixin, CreateV
 class ArticleUpdateView(AuthorAccessMixin, FormValidMixin, FieldsMixin, UpdateView):
     model = Article
     template_name = "registration/article-create-update.html"
+
+
+class ArticleDeleteView(SuperuserAccessMixin, DeleteView):
+    model = Article
+    success_url = reverse_lazy("account:home")
+    template_name = "registration/article_confirm_delete.html"
