@@ -25,7 +25,13 @@
                   <tbody>
                   {% for article in object_list %}
                     <tr>
-                      <td>{{article.title}}</td>
+                      <td>
+                        {% if article.status == 'DRAFT' or user.is_superuser %}
+                        <a href="{% url 'account:article-update' article.pk%}">{{article.title}}</a>
+                        {% else %}
+                        {{article.title}}
+                        {% endif %}
+                      </td>
                       <td>{{article.author.get_full_name}}</td>
                       <td>{{article.description|striptags|truncatewords:"30"}}</td>
                       <td>{{article.show_category}}</td>
