@@ -19,4 +19,7 @@ class ArticleDao:
     def get_article_by_author(self, author):
         return Article.objects.filter(author=author)
 
+    def get_article_by_id(self, pk):
+        return get_object_or_404(Article, pk=pk)
+
 

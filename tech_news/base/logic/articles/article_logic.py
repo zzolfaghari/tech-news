@@ -17,3 +17,7 @@ class ArticleLogic:
 
     def get_article_by_author(self, author):
         return self.article_dao.get_article_by_author(author)
+
+    def get_article_by_id(self, pk):
+        return self.article_dao.get_article_by_id(pk)
+

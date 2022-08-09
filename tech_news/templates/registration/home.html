@@ -7,6 +7,7 @@
 {% block main%}
         <div class="row">
           <div class="col-12">
+            {% if object_list %}
             <div class="card">
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
@@ -41,10 +42,13 @@
                         {% if article.status == "PUBLISHED" %}
                         <span class="badge badge-success">منتشر شده</span>
                         <a target="_blank" class="badge badge-primary" href="{% url 'base:detail' article.slug%}">
-                          نمایش مقاله در سایت
+                          نمایش مقاله
                         </a>
                         {% else %}
                         <span class="badge badge-danger">پیش نویس</span>
+                        <a target="_blank" class="badge badge-secondary" href="{% url 'base:preview' article.pk%}">
+                          پیش نمایش مقاله
+                        </a>
 
                         {%endif%}
 
@@ -64,6 +68,9 @@
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
+            {% else %}
+            <h3>محتوایی برای نمایش موجود نیست</h3>
+            {% endif %}
           </div>
         </div>
         {% endblock %}
