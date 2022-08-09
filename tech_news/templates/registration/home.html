@@ -27,7 +27,7 @@
                   {% for article in object_list %}
                     <tr>
                       <td>
-                        {% if article.status == 'DRAFT' or user.is_superuser %}
+                        {% if article.status == 'DRAFT' or article.status == 'BACK' or user.is_superuser %}
                         <a href="{% url 'account:article-update' article.pk%}">{{article.title}}</a>
                         {% else %}
                         {{article.title}}
@@ -44,8 +44,20 @@
                         <a target="_blank" class="badge badge-primary" href="{% url 'base:detail' article.slug%}">
                           نمایش مقاله
                         </a>
+                        {% elif article.status == "PENDING" %}
+                        <span class="badge" style="background-color: #32f4df">در حال بررسی</span>
+                        {% if user.is_superuser%}
+                        <a target="_blank" class="badge badge-primary" href="{% url 'base:detail' article.slug%}">
+                          نمایش مقاله
+                        </a>
+                        {% endif %}
+
                         {% else %}
+                        {% if article.status == "DRAFT" %}
                         <span class="badge badge-danger">پیش نویس</span>
+                        {% else %}
+                        <span class="badge badge-warning">برگشت داده شده</span>
+                        {% endif %}
                         <a target="_blank" class="badge badge-secondary" href="{% url 'base:preview' article.pk%}">
                           پیش نمایش مقاله
                         </a>
