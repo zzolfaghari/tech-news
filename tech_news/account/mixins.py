@@ -16,6 +16,7 @@ class FieldsMixin:
                 "category",
                 "thumbnail",
                 "publish",
+                "is_special",
                 "status"
 
             ]
