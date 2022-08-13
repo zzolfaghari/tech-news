@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView
 
@@ -6,7 +7,7 @@ from account.logic.user_logic import UserLogic
 from account.models import User
 
 
-class ProfileView(UpdateView):
+class ProfileView(LoginRequiredMixin, UpdateView):
     model = User
     template_name = "registration/profile.html"
     form_class = ProfileForm
