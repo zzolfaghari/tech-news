@@ -14,3 +14,10 @@ class ProfileView(UpdateView):
 
     def get_object(self, queryset=None):
         return UserLogic().get_user_by_id(pk=self.request.user.pk)
+
+    def get_form_kwargs(self):
+        kwargs = super(ProfileView, self).get_form_kwargs()
+        kwargs.update(
+            {'user': self.request.user}
+        )
+        return kwargs
