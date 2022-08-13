@@ -1,5 +1,5 @@
 from django.http import Http404
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 
 from base.enums import StatusType
 from base.models import Article
@@ -67,3 +67,12 @@ class SuperuserAccessMixin:
             return super().dispatch(request, *args, **kwargs)
         else:
             raise Http404("you do not allowed to see this page")
+
+
+class AuthorsAccessMixin:
+    # just superusers can delete articles
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_superuser or request.user.is_author:
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            return redirect("account:profile")
