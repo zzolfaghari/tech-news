@@ -10,7 +10,7 @@ urlpatterns = [
     path("article/create/", ArticleCreateView.as_view(), name="article-create"),
     path("article/update/<int:pk>", ArticleUpdateView.as_view(), name="article-update"),
     path("article/delete/<int:pk>", ArticleDeleteView.as_view(), name="article-delete"),
-    path("profile/<int:pk>", ProfileView.as_view(), name="profile"),
+    path("profile/", ProfileView.as_view(), name="profile"),
     path("login/", views.LoginView.as_view(), name="login"),
     path("logout/", views.LogoutView.as_view(), name="logout"),
     # path(
