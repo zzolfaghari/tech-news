@@ -2,7 +2,7 @@ from django.contrib.auth import views
 from django.urls import path
 
 from account.controller.article_controller import ArticleList, ArticleCreateView, ArticleUpdateView, ArticleDeleteView
-from account.controller.login_controller import Login
+from account.controller.login_controller import Login, PasswordChange
 from account.controller.profile_controller import ProfileView
 
 app_name = 'account'
@@ -14,14 +14,8 @@ urlpatterns = [
     path("profile/", ProfileView.as_view(), name="profile"),
     path("login/", Login.as_view(), name="login"),
     path("logout/", views.LogoutView.as_view(), name="logout"),
-    # path(
-    #     "password_change/", views.PasswordChangeView.as_view(), name="password_change"
-    # ),
-    # path(
-    #     "password_change/done/",
-    #     views.PasswordChangeDoneView.as_view(),
-    #     name="password_change_done",
-    # ),
+    path("password_change/", PasswordChange.as_view(), name="password_change"),
+    path("password_change/done/", views.PasswordChangeDoneView.as_view(), name="password_change_done"),
     # path("password_reset/", views.PasswordResetView.as_view(), name="password_reset"),
     # path(
     #     "password_reset/done/",
