@@ -18,8 +18,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from account.controller.login_controller import Login
+
 urlpatterns = [path('account/', include('account.urls')),
                path('admin/', admin.site.urls),
+               path("login/", Login.as_view(), name="login"),
+               # path("logout/", views.LogoutView.as_view(), name="logout"),
+               # path("password_change/", PasswordChange.as_view(), name="password_change"),
+               # path("password_change/done/", views.PasswordChangeDoneView.as_view(), name="password_change_done"),
                path('', include('base.urls'))
 
                ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + \
