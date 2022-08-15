@@ -62,7 +62,14 @@
 						</span>
 						{{form.password | add_class:"input100"}}
 						<span class="focus-input100" data-placeholder="رمز عبور"></span>
+						{% if form.password.errors%}
+						<div class="myerrors">
+							{{form.password.errors}}
+
+						</div>
+						{% endif %}
 					</div>
+					<a class="myfont" href="{% url 'password_reset' %}">فراموشی رمز عبور</a>
 
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
