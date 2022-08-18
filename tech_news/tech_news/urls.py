@@ -16,13 +16,16 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 
 from account.controller.login_controller import Login
+from account.controller.register_controller import Register, activate
 
 urlpatterns = [path('account/', include('account.urls')),
                path('admin/', admin.site.urls),
                path("login/", Login.as_view(), name="login"),
+               path('register/', Register.as_view(), name='register'),
+               path('activate/<slug:uidb64>/<slug:token>/', activate, name='activate'),
                # path("logout/", views.LogoutView.as_view(), name="logout"),
                # path("password_change/", PasswordChange.as_view(), name="password_change"),
                # path("password_change/done/", views.PasswordChangeDoneView.as_view(), name="password_change_done"),
