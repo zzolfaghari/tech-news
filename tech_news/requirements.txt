@@ -4,3 +4,4 @@ django-widget-tweaks==1.4.12
 django-crispy-forms==1.14.0
 python-dotenv==0.20.0
 django-gravatar2==1.4.4
+django-comments-dab==2.8.0
