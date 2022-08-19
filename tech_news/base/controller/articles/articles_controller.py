@@ -21,14 +21,15 @@ class ArticleController(View):
         return render(request, template_name='base/article_list.html', context=context)
 
 
-class ArticleDetailView(View):
+class ArticleDetailView(DetailView):
+    template_name = 'base/article_detail.html'
+
     def __init__(self):
         super().__init__()
         self.article_logic = ArticleLogic()
 
-    def get(self, request, slug):
-        article = self.article_logic.get_article_by_slug(slug)
-        return render(request, template_name='base/article_detail.html', context={'article': article})
+    def get_object(self, queryset=None):
+        return self.article_logic.get_article_by_slug(self.kwargs.get('slug'))
 
 
 class ArticlePreview(AuthorAccessMixin, DetailView):
