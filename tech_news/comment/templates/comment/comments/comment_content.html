@@ -20,9 +20,9 @@
                 {{ username }}
             </{% if comment.user %}a{% else %}span{% endif %}> |
             {% if comment.is_edited %}
-                <span class="font-italic" title="{% trans 'Edited' %}">{% blocktrans with edited_time=comment.edited|timesince %}ویرایش شده: {{ edited_time }} پیش{% endblocktrans %}</span>
+                <span class="font-italic" title="{% trans 'Edited' %}">{% blocktrans with edited_time=comment.edited %}ویرایش شده: {{ edited_time }}{% endblocktrans %}</span>
             {% else %}
-                <span class="font-italic" title="{% trans 'Posted' %}">{% blocktrans with posted_time=comment.posted|timesince %}{{ posted_time }} پیش{% endblocktrans %}</span>
+                <span class="font-italic" title="{% trans 'Posted' %}">{% blocktrans with posted_time=comment.posted %}ثبت شده: {{ posted_time }}{% endblocktrans %}</span>
             {% endif %}
             {% can_delete_comment comment user as can_delete %}
             {% if comment.user == user %}

@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.history.replaceState({}, document.title, clean_uri);
             }
         }).catch((error) => {
-            alert(gettext("Unable to post your comment!, please try again"));
+            alert(gettext("امکان ثبت دیدگاه شما وجود ندارد! دوباره تلاش کنید"));
             console.error(error);
         });
     };

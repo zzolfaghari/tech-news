@@ -5,7 +5,7 @@
     <div class="{% block header_div_cls %}border-bottom mb-4{% endblock header_div_cls %}">
         <strong class="{% block header_title_cls %}bb{% endblock header_title_cls %}"><span
                 class="js-comment-number">{% get_comments_count model_object user %}</span><span
-                class="comment-translatable"> {% trans "نظرات" %}</span></strong>
+                class="comment-translatable"> {% trans "دیدگاه" %}</span></strong>
         {% if is_subscription_allowed %}
             <span class="{% block follow_icon_wrapper_cls %}float-right{% endblock follow_icon_wrapper_cls %}">{% include 'comment/follow/follow.html' with model_object=model_object btnId=0 %}</span>
         {% endif %}
