@@ -7,6 +7,9 @@ from django.utils.html import format_html
 from account.models import User
 from base.enums import StatusType
 from shared.utils import TechNewsUtils
+from django.contrib.contenttypes.fields import GenericRelation
+
+from comment.models import Comment
 
 
 class ArticleManager(models.Manager):
@@ -44,6 +47,7 @@ class Article(models.Model):
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=9, choices=StatusType.choices)
     is_special = models.BooleanField(default=False, verbose_name="آیا مقاله ویژه است")
+    comments = GenericRelation(Comment)
 
     class Meta:
         verbose_name = "مقاله"
