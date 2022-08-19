@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'widget_tweaks',
     'crispy_forms',
+    'django_gravatar',
 ]
 
 MIDDLEWARE = [
@@ -135,9 +136,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = "account.User"
 
-EMAIL_BACKEND = os.getenv("EMAIL_BACKEND") #'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")  # 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv("EMAIL_HOST")
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")#'gmail account email id'
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")#'Your gmail password'
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")  # 'gmail account email id'
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")  # 'Your gmail password'
 EMAIL_USE_TLS = True
 EMAIL_PORT = os.getenv("EMAIL_PORT")
