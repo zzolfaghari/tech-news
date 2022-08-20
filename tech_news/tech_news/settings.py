@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_gravatar',
     'comment',
+    'star_ratings'
 ]
 
 MIDDLEWARE = [
@@ -143,3 +144,5 @@ EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")  # 'gmail account email id'
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")  # 'Your gmail password'
 EMAIL_USE_TLS = True
 EMAIL_PORT = os.getenv("EMAIL_PORT")
+
+STAR_RATINGS_STAR_HEIGHT = 16
