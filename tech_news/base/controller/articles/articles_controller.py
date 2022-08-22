@@ -29,7 +29,12 @@ class ArticleDetailView(DetailView):
         self.article_logic = ArticleLogic()
 
     def get_object(self, queryset=None):
-        return self.article_logic.get_article_by_slug(self.kwargs.get('slug'))
+        article = self.article_logic.get_article_by_slug(self.kwargs.get('slug'))
+        ip_address = self.request.user.ip_address
+        if ip_address not in article.hits.all():
+            article.hits.add(ip_address)
+
+        return ip_address
 
 
 class ArticlePreview(AuthorAccessMixin, DetailView):

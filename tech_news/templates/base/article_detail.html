@@ -16,6 +16,7 @@
                                 {% endif %}
                             <time>{{article.jpublish}}</time>
                             <div>{% ratings object %}</div>
+                            <div>بازدیدها: {{object.hits.count}}</div>
                         </div>
                     </div>
                 </div>
@@ -36,7 +37,7 @@
                         {% else %}
                             {{object.description |safe}}
                         {% endif %}
-                        {% render_comments article request %}
+                        {% render_comments object request %}
                         {% include_bootstrap %}
                     </div>
                 </div>
