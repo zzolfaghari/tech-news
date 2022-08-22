@@ -34,6 +34,10 @@ class Category(models.Model):
         return self.title
 
 
+class IPAddress(models.Model):
+    ip_address = models.GenericIPAddressField(verbose_name="آدرس آی‌پی")
+
+
 class Article(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.CASCADE, verbose_name="نویسنده",
                                related_name='articles')
@@ -48,6 +52,7 @@ class Article(models.Model):
     status = models.CharField(max_length=9, choices=StatusType.choices)
     is_special = models.BooleanField(default=False, verbose_name="آیا مقاله ویژه است")
     comments = GenericRelation(Comment)
+    hits = models.ManyToManyField(IPAddress, blank=True, related_name="hits", verbose_name="بازدیدها")
 
     class Meta:
         verbose_name = "مقاله"
