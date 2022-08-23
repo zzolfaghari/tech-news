@@ -34,7 +34,7 @@ class ArticleDetailView(DetailView):
         if ip_address not in article.hits.all():
             article.hits.add(ip_address)
 
-        return ip_address
+        return article
 
 
 class ArticlePreview(AuthorAccessMixin, DetailView):
