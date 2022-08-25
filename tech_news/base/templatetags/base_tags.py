@@ -1,6 +1,9 @@
-from django import template
+from datetime import datetime, timedelta
 
-from base.models import Category
+from django import template
+from django.db.models import Count, Q
+
+from base.models import Category, Article
 
 register = template.Library()
 
@@ -14,6 +17,17 @@ def title(data="Tech News Blog"):
 def category_navbar():
     return {
         "category": Category.objects.filter(status=True)
+    }
+
+
+@register.inclusion_tag("base/partials/sidebar.html")
+def popular_articles():
+    last_month = datetime.today() - timedelta(days=30)
+    return {
+        "articles": Article.objects.published().annotate(
+            count=Count('hits', filter=Q(articlehit__created__gt=last_month))
+        ).order_by('-count', '-publish')[:5],
+        "title": "مقالات پربازدید ماه"
     }
 
 
