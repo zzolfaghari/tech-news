@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block previous_page_url %}
-	{% url 'blog:author' author.username page_obj.previous_page_number %}
+	{% url 'base:author' author.username article_list.previous_page_number %}
 {% endblock %}
 
 {% block next_page_url %}
-	{% url 'blog:author' author.username page_obj.next_page_number %}
+	{% url 'base:author' author.username article_list.next_page_number %}
 {% endblock %}

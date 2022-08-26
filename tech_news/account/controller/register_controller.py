@@ -47,7 +47,3 @@ def activate(request, uidb64, token):
         return HttpResponse('اکانت شما با موفقیت فعال شد. برای ورود <a href="/login">کلیک</a> کنید.')
     else:
         return HttpResponse('لینک فعال سازی منقضی شده است. <a href="/registration">دوباره امتحان کنید.</a>')
-
-
-    return render(request, 'account/account_activation_email.html', context)
-
