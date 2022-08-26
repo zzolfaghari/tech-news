@@ -3,6 +3,7 @@ from django.urls import path
 from .controller.articles.articles_controller import ArticleController, ArticleDetailView, ArticlePreview
 from .controller.authors.authors_controller import AuthorController
 from .controller.categories.categories_controller import CategoryController
+from .controller.search.search_controller import SearchList
 
 app_name = 'base'
 urlpatterns = [
@@ -13,6 +14,8 @@ urlpatterns = [
     path('category/<slug:slug>/', CategoryController.as_view(), name='category'),
     path('category/<slug:slug>/page/<int:page>/', CategoryController.as_view(), name='category'),
     path('author/<slug:username>/', AuthorController.as_view(), name='author'),
-    path('author/<slug:username>/page/<int:page>/', AuthorController.as_view(), name='author')
+    path('author/<slug:username>/page/<int:page>/', AuthorController.as_view(), name='author'),
+    path('search/', SearchList.as_view(), name="search"),
+    path('search/page/<int:page>', SearchList.as_view(), name="search"),
 
 ]
