@@ -3,6 +3,7 @@
 {% load static %}
 {% load ratings %}
 {% load base_tags%}
+{% load humanize %}
 {% block main%}
 <!-- Page Header-->
         <header class="masthead" style="background-image: url({% static 'base/assets/img/home-bg.jpg'%})">
@@ -40,7 +41,7 @@
                         <p class="post-meta">
                             نوشته شده توسط
                             <a href="#!">{{article.author.get_full_name}}</a>
-                            {{article.jpublish}}
+                            {{article.publish|naturaltime}}
                             <div>
                         {%for cat in article.category_published.all%}
                         <a href="{% url 'base:category' cat.slug %}">#{{cat.title}}</a>
